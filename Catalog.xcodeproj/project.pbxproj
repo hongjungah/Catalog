@@ -29,6 +29,8 @@
 		33641D1F1BD8BE9E00B36957 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33641D1E1BD8BE9E00B36957 /* ProductCell.swift */; settings = {ASSET_TAGS = (); }; };
 		336D7B0A1BDE064400F9E616 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D7B091BDE064400F9E616 /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		336D7B0E1BDE0ECD00F9E616 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D7B0D1BDE0ECD00F9E616 /* CartViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		336D7B101BDE1FAF00F9E616 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D7B0F1BDE1FAF00F9E616 /* CartManager.swift */; settings = {ASSET_TAGS = (); }; };
+		336D7B121BDE202800F9E616 /* ProducManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D7B111BDE202800F9E616 /* ProducManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		33641D1E1BD8BE9E00B36957 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		336D7B091BDE064400F9E616 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		336D7B0D1BDE0ECD00F9E616 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		336D7B0F1BDE1FAF00F9E616 /* CartManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
+		336D7B111BDE202800F9E616 /* ProducManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProducManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				336D7B091BDE064400F9E616 /* DetailViewController.swift */,
 				336D7B0D1BDE0ECD00F9E616 /* CartViewController.swift */,
 				33641D1E1BD8BE9E00B36957 /* ProductCell.swift */,
+				336D7B0F1BDE1FAF00F9E616 /* CartManager.swift */,
+				336D7B111BDE202800F9E616 /* ProducManager.swift */,
 				33641CDC1BD8BBF300B36957 /* Main.storyboard */,
 				33641CDF1BD8BBF300B36957 /* Assets.xcassets */,
 				33641CE11BD8BBF300B36957 /* LaunchScreen.storyboard */,
@@ -321,6 +327,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				33641D1F1BD8BE9E00B36957 /* ProductCell.swift in Sources */,
+				336D7B101BDE1FAF00F9E616 /* CartManager.swift in Sources */,
+				336D7B121BDE202800F9E616 /* ProducManager.swift in Sources */,
 				33641CDB1BD8BBF300B36957 /* ViewController.swift in Sources */,
 				336D7B0E1BDE0ECD00F9E616 /* CartViewController.swift in Sources */,
 				33641CD91BD8BBF300B36957 /* AppDelegate.swift in Sources */,
