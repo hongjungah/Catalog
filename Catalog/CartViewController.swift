@@ -10,18 +10,16 @@ import UIKit
 
 class CartViewController: UIViewController {
 
-    var cartList = [String]()
+    //var cartList = [String]()
     
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewWillAppear(animated: Bool) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        print(appDelegate.shareData)
-        if appDelegate.shareData != "" {
-            cartList.insert(appDelegate.shareData, atIndex: cartList.count)
-        }
-        print(cartList)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleModelChange", name: ModelChangedNotification, object: nil)
+    }
+    
+    func handleModelChange(noti: NSNotification) {
         tableView.reloadData()
-        appDelegate.shareData = ""
     }
     
     override func viewDidLoad() {
@@ -47,14 +45,14 @@ class CartViewController: UIViewController {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return cartList.count
+        return CartManager.sharedManger.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("CART_CELL", forIndexPath: indexPath)
             
-        cell.textLabel?.text = cartList[cartList.count-indexPath.row-1]
+        cell.textLabel?.text = CartManager.sharedManger.CartAt(CartManager.sharedManger.count-indexPath.row-1)
             
         return cell
     }

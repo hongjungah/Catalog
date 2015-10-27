@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, ProductCellDelegate {
 
     var data: [String]!
-    var cartList = [String]()
+    //var cartList = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +31,9 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
             "iceHockey",
             "billiard"
         ]
+        
+        CatalogManager.sharedManager.catalogList = data
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
 
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
-        let selectedItem  = data[indexPath.row]
+        let selectedItem  = CatalogManager.sharedManager.CatalogAt(indexPath.row)
         
         let detailVC = segue.destinationViewController as! DetailViewController
         detailVC.itemName = selectedItem
@@ -61,33 +64,28 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
     func addCart(productCode: String) {
         //cartList.insert(data[Int(productCode)!], atIndex: cartList.count)
         //tableView.reloadData()
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.shareData = data[Int(productCode)!]
-        print(appDelegate.shareData)
+        CartManager.sharedManger.addCart(productCode)
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return data.count
+        return CatalogManager.sharedManager.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("PRODUCT_CELL", forIndexPath: indexPath) as! ProductCell
         
-        let itemName = data[indexPath.row]
-        
-        cell.productName.text = itemName
-        let image = UIImage(named: "\(itemName).png")
+        cell.productName.text = CatalogManager.sharedManager.CatalogAt(indexPath.row)
+        let image = UIImage(named: "\(CatalogManager.sharedManager.CatalogAt(indexPath.row)).png")
         cell.productImage.image = image
         cell.productPrice.text = "\(indexPath.row+1)00"
         
-        let code = indexPath.row.description
-        cell.productCode = code
-
+        cell.productCode = CatalogManager.sharedManager.CatalogAt(indexPath.row)
+        
         cell.delegate = self
-            
+        
         return cell
 
     }

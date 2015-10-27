@@ -6,13 +6,13 @@
 //  Copyright © 2015년 tacademy. All rights reserved.
 //
 
-import UIKit
+import Foundation
+
+let ModelChangedNotification = "ModelChangedNotification"
 
 class CartManager {
 
-    static var sharedManger: CartManager {
-        return CartManager()
-    }
+    static var sharedManger = CartManager()
     
     var cartList = [String]()
     
@@ -26,5 +26,7 @@ class CartManager {
     
     func addCart(data: String) {
         cartList.insert(data, atIndex: cartList.count)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("CatalogChanged", object: nil)
     }
 }
