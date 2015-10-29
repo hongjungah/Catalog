@@ -382,7 +382,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="장바구니" id="lzP-yb-YCA"/>
+                    <tabBarItem key="tabBarItem" title="장바구니" selectedImage="cart.png" id="lzP-yb-YCA"/>
                     <connections>
                         <outlet property="tableView" destination="UYp-dj-HXk" id="XKC-hu-XsI"/>
                     </connections>
@@ -411,6 +411,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart.png" width="105" height="109"/>
         <image name="shopping-cart.png" width="48" height="48"/>
     </resources>
 </document>

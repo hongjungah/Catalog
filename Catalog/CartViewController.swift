@@ -9,16 +9,16 @@
 import UIKit
 
 class CartViewController: UIViewController {
-
-    //var cartList = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleModelChange", name: ModelChangedNotification, object: nil)
+        super.viewWillAppear(animated)
+        RequestController.sharedManger.sendRequestGET()
+        tableView.reloadData()
     }
     
-    func handleModelChange(noti: NSNotification) {
+    func handlerModelChange(noti: NSNotification) {
         tableView.reloadData()
     }
     

@@ -37,15 +37,17 @@ class RequestController {
         Alamofire.request(.POST, "https://api.parse.com/1/classes/CartItem", parameters: bodyParameters, encoding: encoding, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON{ response in
+                guard response.result.error == nil else {
+                    return
+                }
                 print("전송완료")
                 print(response.result.value)
+        
         }
         sendRequestGET()
     }
     
-    func sendRequestGET() -> String() {
-    
-    let names: String()
+    func sendRequestGET() {
     
         // My API (2) (GET https://api.parse.com/1/classes/CartItem)
 
@@ -58,8 +60,15 @@ class RequestController {
         // Fetch Request
         Alamofire.request(.GET, "https://api.parse.com/1/classes/CartItem", headers: headers).responseJSON{ response in
             let json = JSON(response.result.value!)
-            let names = json["results"]["name"]
+            guard response.result.error == nil else {
+                return
+            }
+            CartManager.sharedManger.cartList.removeAll()
+            for (_, subJson):(String, JSON) in json["results"] {
+                let productName = subJson["name"].stringValue
+                CartManager.sharedManger.cartList.append(productName)
+            }
+
         }
-        
     }
 }

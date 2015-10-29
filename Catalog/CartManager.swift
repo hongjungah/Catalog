@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import RealmSwift
+import Alamofire
 
-let ModelChangedNotification = "ModelChangedNotification"
+//let ModelChangedNotification = "ModelChangedNotification"
 
 class CartManager {
 
@@ -24,9 +26,12 @@ class CartManager {
         return cartList[index]
     }
     
+    func retriveCart() {
+       //let realm = try! Realm()
+       // cartList = realm.objects(cartList)
+    }
+    
     func addCart(data: String) {
-        cartList.insert(data, atIndex: cartList.count)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("CatalogChanged", object: nil)
+        RequestController.sharedManger.sendRequestPOST(data)
     }
 }

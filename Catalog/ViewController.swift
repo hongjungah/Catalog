@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, ProductCellDelegate {
 
@@ -65,7 +66,6 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
         //cartList.insert(data[Int(productCode)!], atIndex: cartList.count)
         //tableView.reloadData()
         CartManager.sharedManger.addCart(productCode)
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
