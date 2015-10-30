@@ -79,8 +79,7 @@
                                                             <exclude reference="xvw-vs-LjU"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="52" y="31" width="112" height="21"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="xvw-vs-LjU"/>
                                                         </mask>
@@ -97,8 +96,7 @@
                                                             <exclude reference="KOs-A6-yii"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="176" y="6" width="53" height="46"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="KOs-A6-yii"/>
                                                         </mask>
@@ -279,7 +277,7 @@
         <scene sceneID="2J2-op-Sft">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aI3-te-k7P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="카탈로그" id="xsk-Yg-TtP"/>
+                    <tabBarItem key="tabBarItem" title="카탈로그" image="list.png" id="xsk-Yg-TtP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="g9a-fO-Y3P">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -316,7 +314,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CART_CELL" textLabel="Ote-c4-Uuh" rowHeight="55" style="IBUITableViewCellStyleDefault" id="Gj9-8l-FSi" customClass="ProductCell" customModule="Catalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CART_CELL" textLabel="Ote-c4-Uuh" rowHeight="55" style="IBUITableViewCellStyleDefault" id="Gj9-8l-FSi" customClass="CartCell" customModule="Catalog" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gj9-8l-FSi" id="hBk-Yk-3zu">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="54"/>
@@ -334,6 +332,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cartItemName" destination="Ote-c4-Uuh" id="R9n-w0-OEu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -382,7 +383,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="장바구니" selectedImage="cart.png" id="lzP-yb-YCA"/>
+                    <tabBarItem key="tabBarItem" title="장바구니" image="cart_add.png" selectedImage="cart_add.png" id="lzP-yb-YCA"/>
                     <connections>
                         <outlet property="tableView" destination="UYp-dj-HXk" id="XKC-hu-XsI"/>
                     </connections>
@@ -411,7 +412,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart.png" width="105" height="109"/>
-        <image name="shopping-cart.png" width="48" height="48"/>
+        <image name="cart_add.png" width="32" height="32"/>
+        <image name="list.png" width="26" height="26"/>
+        <image name="shopping-cart.png" width="512" height="512"/>
     </resources>
 </document>

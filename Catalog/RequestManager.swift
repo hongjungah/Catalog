@@ -10,21 +10,24 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class RequestController {
+class RequestManager {
     
-    static var sharedManger = RequestController()
+    let manager: Manager
     
+    static var sharedManger = RequestManager()
+    
+    init() {
+        var defaultHeaders = Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders ?? [:]
+        defaultHeaders["X-Parse-REST-API-Key"] = "kmFkkCvOVbbYwNjla11W0U4Lwm1iOvkcOnR6v0Ob"
+        defaultHeaders["X-Parse-Application-Id"] = "ajLkM9eoIQ4ddHaGKb9umaQSV9Sx58iOGxRPoRER"
+        
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = defaultHeaders
+        manager = Alamofire.Manager(configuration: configuration)
+    }
+    
+    // Parse DB 서버와 통신하여 데이터 저장
     func sendRequestPOST(data: String) {
-        
-        // My API (2) (POST https://api.parse.com/1/classes/CartItem)
-        
-        // Add Headers
-        let headers = [
-            "X-Parse-REST-API-Key":"yUTg4RLJUqe94VEcu9IF1oZdge0rlu4weJ5qwOoa",
-            "X-Parse-Application-Id":"14YKmKugroOhNGY9Jf8X4a8EiUqBL3hsB8TvbzL0",
-            "Content-Type":"application/json"
-        ]
-
         
         // JSON Body
         let bodyParameters = [
@@ -34,31 +37,23 @@ class RequestController {
         let encoding = Alamofire.ParameterEncoding.JSON
         
         // Fetch Request
-        Alamofire.request(.POST, "https://api.parse.com/1/classes/CartItem", parameters: bodyParameters, encoding: encoding, headers: headers)
+        manager.request(.POST, "https://api.parse.com/1/classes/CartItem", parameters: bodyParameters, encoding: encoding)
             .validate(statusCode: 200..<300)
             .responseJSON{ response in
                 guard response.result.error == nil else {
+                    print("Error")
                     return
                 }
                 print("전송완료")
                 print(response.result.value)
-        
         }
-        sendRequestGET()
     }
     
+    // Parse DB 서버와 통신하여 데이터 조회
     func sendRequestGET() {
-    
-        // My API (2) (GET https://api.parse.com/1/classes/CartItem)
-
-        // Add Headers
-        let headers = [
-            "X-Parse-REST-API-Key":"yUTg4RLJUqe94VEcu9IF1oZdge0rlu4weJ5qwOoa",
-            "X-Parse-Application-Id":"14YKmKugroOhNGY9Jf8X4a8EiUqBL3hsB8TvbzL0",
-        ]
         
         // Fetch Request
-        Alamofire.request(.GET, "https://api.parse.com/1/classes/CartItem", headers: headers).responseJSON{ response in
+        manager.request(.GET, "https://api.parse.com/1/classes/CartItem").responseJSON{ response in
             let json = JSON(response.result.value!)
             guard response.result.error == nil else {
                 return
@@ -68,7 +63,7 @@ class RequestController {
                 let productName = subJson["name"].stringValue
                 CartManager.sharedManger.cartList.append(productName)
             }
-
+            NSNotificationCenter.defaultCenter().postNotificationName("CartChanged", object: nil)
         }
     }
 }

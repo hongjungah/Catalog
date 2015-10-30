@@ -1,5 +1,5 @@
-
-Catalog.xcworkspace/contents.xcworkspacedata
-
-Catalog.xcodeproj/project.xcworkspace/xcuserdata/hong.xcuserdatad/UserInterfaceState.xcuserstate
-
+Pods/
+Catalog.xcworkspace/
+Catalog.xcodeproj/xcuserdata/
+Catalog.xcodeproj/project.xcworkspace/xcuserdata/
+Podfile.lock

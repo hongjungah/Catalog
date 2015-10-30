@@ -12,7 +12,6 @@ import Alamofire
 class ViewController: UIViewController, UITableViewDataSource, ProductCellDelegate {
 
     var data: [String]!
-    //var cartList = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -42,6 +41,7 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
         // Dispose of any resources that can be recreated.
     }
     
+    // 화면들 간에 데이터 넘기기
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         let cell = sender as! UITableViewCell
@@ -52,27 +52,30 @@ class ViewController: UIViewController, UITableViewDataSource, ProductCellDelega
         detailVC.itemName = selectedItem
     }
     
+    // 테이블뷰 내 색션 개수
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
     }
     
+    // 테이블뷰 내 색션 타이틀 이름 설정
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return "Catalog"
     }
     
     func addCart(productCode: String) {
-        //cartList.insert(data[Int(productCode)!], atIndex: cartList.count)
-        //tableView.reloadData()
+        
         CartManager.sharedManger.addCart(productCode)
     }
     
+    // 테이블뷰 내 섹션에 따른 행 개수
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return CatalogManager.sharedManager.count
     }
 
+    // 테이블뷰 내 섹션에 따른 행 안에 컨텐츠 설정
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("PRODUCT_CELL", forIndexPath: indexPath) as! ProductCell

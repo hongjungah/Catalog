@@ -9,6 +9,7 @@
 import UIKit
 
 protocol CartCellDelegate: class {
+    func addCart(data: String)
 }
 
 class CartCell: UITableViewCell {
@@ -17,9 +18,11 @@ class CartCell: UITableViewCell {
     
     var productCode: String!
     
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var productPrice: UILabel!
+    @IBOutlet weak var cartItemName: UILabel!
+    
+    func addCart(data: String) {
+        delegate.addCart(data)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
